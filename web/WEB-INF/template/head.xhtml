@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{controladorLogin.validarSesion()}"/>
+        </f:metadata>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+        <title><ui:insert name="title">Mi app</ui:insert></title>
+
+        <!-- Bootstrap -->
+        <link href="#{request.contextPath}/resources/fk/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+        <!-- Font Awesome -->
+        <link href="#{request.contextPath}/resources/fk/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+        <!-- NProgress -->
+        <link href="#{request.contextPath}/resources/fk/nprogress/nprogress.css" rel="stylesheet"/>
+        <!-- FullCalendar -->
+        <link href="#{request.contextPath}/resources/fk/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet"/>
+        <link href="#{request.contextPath}/resources/fk/fullcalendar/dist/fullcalendar.print.css" rel="stylesheet" media="print"/>
+
+        <!-- Custom styling plus plugins -->
+        <link href="#{request.contextPath}/resources/css/custom.min.css" rel="stylesheet"/>
+    </h:head>
+</ui:composition>
+

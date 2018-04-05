@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <ui:include src="/WEB-INF/template/head.xhtml"/>
+
+    <h:body class="nav-md">
+
+        <div class="container body">
+            <div class="main_container">
+
+                <ui:include src="/WEB-INF/template/main-menu.xhtml"/>
+                <ui:include src="/WEB-INF/template/top-menu.xhtml"/>
+
+
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3><ui:insert name="title">Mi app</ui:insert> <small><ui:insert name="description">Click to add/edit events</ui:insert></small></h3>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <ui:insert name="contenido">
+                            Default
+                        </ui:insert>
+                    </div>
+                </div>
+                <!-- /page content -->
+
+
+
+                <ui:include src="/WEB-INF/template/footer.xhtml"/>
+
+            </div>
+        </div>
+
+        <ui:insert name="modals"></ui:insert>
+        <ui:include src="/WEB-INF/template/scripts.xhtml"/>
+
+    </h:body>
+
+</ui:composition>
