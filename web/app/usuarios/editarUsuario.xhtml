@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template/main-template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="title">
+        Bienvenido a efisalud
+    </ui:define>
+
+    <ui:define name="description">
+
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> cambiar <small>este texto</small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+
+                        <h:form class="form-horizontal form-label-left">
+                            
+                            <b:messages show-detail="true" show-summary="true"></b:messages>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Documento">Documento <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="Documento" value="#{controladorEditarUsuarios.usuarioSeleccionado.documento}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nombre">Nombre <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="Nombre" value="#{controladorEditarUsuarios.usuarioSeleccionado.nombres}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Apellido">Apellido <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="Apellido" value="#{controladorEditarUsuarios.usuarioSeleccionado.apellidos}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">direccion <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="direccion" value="#{controladorEditarUsuarios.usuarioSeleccionado.direccion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">telefono <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="telefono" value="#{controladorEditarUsuarios.usuarioSeleccionado.telefono}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="estado" value="#{controladorEditarUsuarios.usuarioSeleccionado.estado}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">email <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="email" value="#{controladorEditarUsuarios.usuarioSeleccionado.email}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">clave <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText id="clave" value="#{controladorEditarUsuarios.usuarioSeleccionado.clave}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rol">Rol <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="rol" value="#{controladorEditarUsuarios.usuarioSeleccionado.rolIdRol}" class="select2_single form-control">
+                                        <f:selectItems value="#{controladorEditarUsuarios.listaRoles}" var="listaRoles" itemLabel="#{listaRoles.nombre}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNacimiento"> Fecha de nacimiento<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" showWeek="true"  value="#{controladorEditarUsuarios.usuarioSeleccionado.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
+                                </div>
+                            </div>
+                            
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <h:commandButton value="crear" action="#{controladorEditarUsuarios.editar()}"></h:commandButton>
+                                </div>
+                            </div>
+                        </h:form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="modals">
+
+        <!-- calendar modal -->
+
+        <!-- /calendar modal -->
+    </ui:define>
+
+    <ui:define name="scripts-page">
+    </ui:define>
+
+</ui:composition>
