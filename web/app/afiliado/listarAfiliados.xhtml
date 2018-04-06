@@ -95,6 +95,9 @@
                                         <h:outputText value="opciones"/>
                                     </f:facet>
                                     <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}"></h:commandButton>
+                                    <h:commandButton  value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
+                                        <f:ajax execute="btnCambiar" render="@form"></f:ajax>
+                                    </h:commandButton>
                                 </h:column>
                             </b:dataTable>
                         </h:form>

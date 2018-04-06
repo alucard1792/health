@@ -40,7 +40,7 @@ public class ControladorEditarUsuarios implements Serializable {
 
     @PostConstruct
     public void init() {
-        listaRoles = rolFacadeLocal.findAll();
+        listaRoles = rolFacadeLocal.listarAdminAnalista();
 
     }
 

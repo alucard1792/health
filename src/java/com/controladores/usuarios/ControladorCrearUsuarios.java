@@ -36,7 +36,7 @@ public class ControladorCrearUsuarios implements Serializable {
 
     @PostConstruct
     public void init() {
-        listaRoles = rolFacadeLocal.findAll();
+        listaRoles = rolFacadeLocal.listarAdminAnalista();
         usuario = new Usuario();
 
     }

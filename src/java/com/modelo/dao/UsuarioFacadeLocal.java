@@ -32,4 +32,6 @@ public interface UsuarioFacadeLocal {
     
     Usuario iniciarSesion(int documento, String clave);
     
+    List<Usuario>listarUsuariosNoAfiliados();
+    
 }

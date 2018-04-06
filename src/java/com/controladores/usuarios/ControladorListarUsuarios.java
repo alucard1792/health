@@ -31,7 +31,7 @@ public class ControladorListarUsuarios implements Serializable{
     
     @PostConstruct
     public void init(){
-        listaUsuario = usuarioFacadeLocal.findAll();
+        listaUsuario = usuarioFacadeLocal.listarUsuariosNoAfiliados();
     
     }
 

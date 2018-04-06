@@ -6,9 +6,12 @@
 package com.modelo.dao;
 
 import com.modelo.entidades.Rol;
+import com.modelo.entidades.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +30,15 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
 
     public RolFacade() {
         super(Rol.class);
+    }
+
+    @Override
+    public List<Rol> listarAdminAnalista() {
+        Query q = getEntityManager().createQuery("SELECT r FROM Rol r WHERE r.idRol = :rolIdRol1 OR r.idRol = :rolIdRol2", Rol.class);
+        q.setParameter("rolIdRol1", 5);
+        q.setParameter("rolIdRol2", 6);
+        return q.getResultList();
+
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Rol;
 import com.modelo.entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,12 +41,21 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         q.setParameter("documento", documento);
         q.setParameter("clave", clave);
         listaUsuario = q.getResultList();
-        for(Usuario u:listaUsuario){
+        for (Usuario u : listaUsuario) {
             usuario = u;
-            
+
         }
         return usuario;
-        
+
     }
-    
+
+    @Override
+    public List<Usuario> listarUsuariosNoAfiliados() {
+        Query q = getEntityManager().createQuery("SELECT u FROM Usuario u WHERE u.rolIdRol = :rolIdRol1 OR u.rolIdRol = :rolIdRol2", Usuario.class);
+        q.setParameter("rolIdRol1", new Rol(5));
+        q.setParameter("rolIdRol2", new Rol(6));
+        return q.getResultList();
+
+    }
+
 }
