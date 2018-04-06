@@ -32,14 +32,14 @@
 
 
                         <h:form class="form-horizontal form-label-left">
-                            
+
                             <b:messages show-detail="true" show-summary="true"></b:messages>
-                            
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Documento">Documento <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Documento" value="#{controladorCrearUsuarios.usuario.documento}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="Documento" value="#{controladorCrearAfiliacion.usuario.documento}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -47,7 +47,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nombre">Nombre <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Nombre" value="#{controladorCrearUsuarios.usuario.nombres}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="Nombre" value="#{controladorCrearAfiliacion.usuario.nombres}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -55,7 +55,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Apellido">Apellido <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Apellido" value="#{controladorCrearUsuarios.usuario.apellidos}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="Apellido" value="#{controladorCrearAfiliacion.usuario.apellidos}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -64,7 +64,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">direccion <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="direccion" value="#{controladorCrearUsuarios.usuario.direccion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="direccion" value="#{controladorCrearAfiliacion.usuario.direccion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -72,15 +72,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">telefono <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="telefono" value="#{controladorCrearUsuarios.usuario.telefono}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="estado" value="#{controladorCrearUsuarios.usuario.estado}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="telefono" value="#{controladorCrearAfiliacion.usuario.telefono}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -88,7 +80,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">email <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="email" value="#{controladorCrearUsuarios.usuario.email}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="email" value="#{controladorCrearAfiliacion.usuario.email}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
@@ -96,16 +88,37 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">clave <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="clave" value="#{controladorCrearUsuarios.usuario.clave}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="clave" value="#{controladorCrearAfiliacion.usuario.clave}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rol">Rol <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="rol" value="#{controladorCrearUsuarios.usuario.rolIdRol}" class="select2_single form-control">
-                                        <f:selectItems value="#{controladorCrearUsuarios.listaRoles}" var="listaRoles" itemLabel="#{listaRoles.nombre}"></f:selectItems>
+                                    <h:selectOneMenu id="estado" value="#{controladorCrearAfiliacion.usuario.estado}" class="select2_single form-control">
+                                        <f:selectItem itemValue="0" itemLabel="inactivo"></f:selectItem>
+                                        <f:selectItem itemValue="1" itemLabel="Activo"></f:selectItem>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Municipios">Municipios <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="Municipios" value="#{controladorCrearAfiliacion.afiliacion.municipioIdMunicipio}" class="select2_single form-control">
+                                        <f:selectItems value="#{controladorCrearAfiliacion.listaMunicipios}" var="listaMunicipios" itemLabel="#{listaMunicipios.nombre}"></f:selectItems>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="listaTipoAfiliacion">Tipo afiliacion <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="listaTipoAfiliacion" value="#{controladorCrearAfiliacion.afiliacion.tipoafiliacionIdCodigo}" class="select2_single form-control">
+                                        <f:selectItems value="#{controladorCrearAfiliacion.listaTipoAfiliacion}" var="listaTipoAfiliacion" itemLabel="#{listaTipoAfiliacion.regimen}"></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
@@ -114,17 +127,17 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNacimiento"> Fecha de nacimiento<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" showWeek="true"  value="#{controladorCrearUsuarios.usuario.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
+                                    <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" value="#{controladorCrearAfiliacion.usuario.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
                                 </div>
                             </div>
-                            
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
                                     <button type="submit" class="btn btn-success">Submit</button>
-                                    <h:commandButton value="crear" action="#{controladorCrearUsuarios.crear()}"></h:commandButton>
+                                    <h:commandButton value="crear" action="#{controladorCrearAfiliacion.crear()}"></h:commandButton>
                                 </div>
                             </div>
                         </h:form>

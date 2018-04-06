@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladores.usuarios;
+package com.controladores.afiliacion;
 
-import com.modelo.dao.UsuarioFacadeLocal;
-import com.modelo.entidades.Usuario;
+import com.modelo.dao.AfiliacionFacadeLocal;
+import com.modelo.entidades.Afiliacion;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -18,25 +18,25 @@ import javax.faces.view.ViewScoped;
  *
  * @author David
  */
-@Named(value = "controladorListarUsuarios")
+@Named(value = "controladorListarAfiliacion")
 @ViewScoped
-public class ControladorListarUsuarios implements Serializable{
+public class ControladorListarAfiliacion implements Serializable{
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacadeLocal;
-    private List<Usuario> listaUsuario;
+    private AfiliacionFacadeLocal AfiliacionFacadeLocal;
+    private List<Afiliacion> listaAfiliados;
             
-    public ControladorListarUsuarios() {
+    public ControladorListarAfiliacion() {
     }
     
     @PostConstruct
     public void init(){
-        listaUsuario = usuarioFacadeLocal.findAll();
+        listaAfiliados = AfiliacionFacadeLocal.findAll();
     
     }
 
-    public List<Usuario> getListaUsuario() {
-        return listaUsuario;
+    public List<Afiliacion> getListaAfiliados() {
+        return listaAfiliados;
     }
-    
+
 }

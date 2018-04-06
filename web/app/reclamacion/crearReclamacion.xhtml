@@ -30,7 +30,6 @@
                     </div>
                     <div class="x_content">
 
-
                         <h:form class="form-horizontal form-label-left">
 
                             <b:messages show-detail="true" show-summary="true"></b:messages>
@@ -39,17 +38,27 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivo">motivo <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="motivo" value="#{controladorCrearTranslado.traslado.motivo}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    <h:inputText id="motivo" value="#{controladorCrearReclamacion.reclamacion.motivo}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
                                 </div>
                             </div>
 
-
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="municipio">municipio <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="municipio" value="#{controladorCrearTranslado.traslado.municipioIdMunicipio}" class="select2_single form-control">
-                                        <f:selectItems value="#{controladorCrearTranslado.listaMunicipio}" var="listaMunicipio" itemLabel="#{listaMunicipio.nombre}"></f:selectItems>
+                                    <h:inputText id="descripcion" value="#{controladorCrearReclamacion.reclamacion.descripcion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoReclamacion">tipo reclamacion <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="tipoReclamacion" value="#{controladorCrearReclamacion.reclamacion.tipoReclamacion}" class="select2_single form-control">
+                                        <f:selectItem itemValue="desacatos" itemLabel="desacatos"></f:selectItem>
+                                        <f:selectItem itemValue="tutelas" itemLabel="tutelas"></f:selectItem>
+                                        <f:selectItem itemValue="Derecho de peticion " itemLabel="Derecho de peticion "></f:selectItem>
+                                        <f:selectItem itemValue="Solicitud " itemLabel="Solicitud"></f:selectItem>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
@@ -59,10 +68,10 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                     <button class="btn btn-primary" type="button">Cancel</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                    <h:commandButton value="crear" action="#{controladorCrearTranslado.crear()}"></h:commandButton>
+                                    <h:commandButton class="btn btn-success" value="crear" action="#{controladorCrearReclamacion.crear()}"></h:commandButton>
                                 </div>
                             </div>
+                            
                         </h:form>
 
                     </div>

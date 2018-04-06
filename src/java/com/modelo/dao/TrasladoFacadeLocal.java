@@ -5,7 +5,9 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Afiliacion;
 import com.modelo.entidades.Traslado;
+import com.modelo.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +31,9 @@ public interface TrasladoFacadeLocal {
     List<Traslado> findRange(int[] range);
 
     int count();
+    
+    List<Traslado>listaTransladoPorRol(Afiliacion a);
+
+    List<Traslado>listaTransladoPorRol(Usuario u);
     
 }

@@ -35,6 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Municipio.findByCodigoMunicipio", query = "SELECT m FROM Municipio m WHERE m.codigoMunicipio = :codigoMunicipio")})
 public class Municipio implements Serializable {
 
+    @OneToMany(mappedBy = "municipioIdMunicipio", fetch = FetchType.EAGER)
+    private List<Traslado> trasladoList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,6 +114,15 @@ public class Municipio implements Serializable {
     @Override
     public String toString() {
         return "com.modelo.entidades.Municipio[ idMunicipio=" + idMunicipio + " ]";
+    }
+
+    @XmlTransient
+    public List<Traslado> getTrasladoList() {
+        return trasladoList;
+    }
+
+    public void setTrasladoList(List<Traslado> trasladoList) {
+        this.trasladoList = trasladoList;
     }
     
 }

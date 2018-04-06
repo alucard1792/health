@@ -61,6 +61,9 @@ public class Traslado implements Serializable {
     @JoinColumn(name = "estado_procesos_Id_Estado", referencedColumnName = "Id_Estado")
     @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private EstadoProceso estadoprocesosIdEstado;
+    @JoinColumn(name = "municipio_id_municipio", referencedColumnName = "Id_Municipio")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Municipio municipioIdMunicipio;
     @JoinColumn(name = "usuario_Id_Analista", referencedColumnName = "Id_Usuario")
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuarioIdAnalista;
@@ -126,6 +129,14 @@ public class Traslado implements Serializable {
 
     public void setEstadoprocesosIdEstado(EstadoProceso estadoprocesosIdEstado) {
         this.estadoprocesosIdEstado = estadoprocesosIdEstado;
+    }
+
+    public Municipio getMunicipioIdMunicipio() {
+        return municipioIdMunicipio;
+    }
+
+    public void setMunicipioIdMunicipio(Municipio municipioIdMunicipio) {
+        this.municipioIdMunicipio = municipioIdMunicipio;
     }
 
     public Usuario getUsuarioIdAnalista() {

@@ -32,9 +32,9 @@
 
 
                         <h:form class="form-horizontal form-label-left">
-                            
+
                             <b:messages show-detail="true" show-summary="true"></b:messages>
-                            
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Documento">Documento <span class="required">*</span>
                                 </label>
@@ -77,14 +77,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="estado" value="#{controladorCrearUsuarios.usuario.estado}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">email <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -100,6 +92,17 @@
                                 </div>
                             </div>
                             
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:selectOneMenu id="estado" value="#{controladorCrearUsuarios.usuario.estado}" class="select2_single form-control">
+                                        <f:selectItem itemValue="0" itemLabel="inactivo"></f:selectItem>
+                                        <f:selectItem itemValue="1" itemLabel="Activo"></f:selectItem>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="rol">Rol <span class="required">*</span>
                                 </label>
@@ -117,7 +120,7 @@
                                     <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" showWeek="true"  value="#{controladorCrearUsuarios.usuario.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
                                 </div>
                             </div>
-                            
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

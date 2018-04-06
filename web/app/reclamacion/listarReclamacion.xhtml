@@ -6,6 +6,7 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:b="http://bootsfaces.net/ui">
     <ui:define name="title">
         Bienvenido a efisalud
@@ -30,85 +31,105 @@
                     </div>
                     <div class="x_content">
 
-
-                        <h:form>
+                        <h:form prependId="false">
                             <b:messages showDetail="true" showSummary="true"></b:messages>
-                            <b:dataTable value="#{controladorListarUsuarios.listaUsuario}" var="item">
+                            <b:dataTable value="#{controladorListarReclamacion.listaReclamaciones}" var="item">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="IdUsuario"/>
+                                        <h:outputText value="Id"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idUsuario}"/>
+                                    <h:outputText value="#{item.idReclamacion}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Documento"/>
+                                        <h:outputText value="tipo de reclamacion"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.documento}"/>
+                                    <h:outputText value="#{item.tipoReclamacion}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nombres"/>
+                                        <h:outputText value="motivo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.nombres}"/>
+                                    <h:outputText value="#{item.motivo}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Apellidos"/>
+                                        <h:outputText value="descripcion"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.apellidos}"/>
+                                    <h:outputText value="#{item.descripcion}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="FechaNacimiento"/>
+                                        <h:outputText value="fecha registro"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.fechaNacimiento}">
+                                    <h:outputText value="#{item.fecharegistro}">
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Direccion"/>
+                                        <h:outputText value="fecha solucion"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.direccion}"/>
+                                    <h:outputText value="#{item.fechaSolucion}">
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Telefono"/>
+                                        <h:outputText value="afiliado"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.telefono}"/>
+                                    <h:outputText value="#{item.afiliacionIdAfiliado.usuarioIdAsignado.nombres} #{item.afiliacionIdAfiliado.usuarioIdAsignado.apellidos}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Estado"/>
+                                        <h:outputText value="analista"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.estado}"/>
+                                    <h:outputText value="#{item.usuarioIdanalista.nombres} #{item.usuarioIdanalista.apellidos}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Email"/>
+                                        <h:outputText value="estado"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.email}"/>
+                                    <h:outputText value="#{item.estadoprocesosIdEstado.nombreEstado}"/>
                                 </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Clave"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.clave}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="RolIdRol"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.rolIdRol.nombre}"/>
-                                </h:column>
-                                <h:column>
+                                <h:column rendered="#{controladorLogin.usuarioSesion.rolIdRol.idRol == 6}">
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" action="#{controladorEditarUsuarios.prepararEditar(item)}"></h:commandButton>
+                                    <h:commandButton value="editar" pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" >
+                                        <f:ajax event="click" listener="#{controladorEditarReclamacion.prepararEditar(item)}" render="content-modal-eliminar"></f:ajax>
+                                    </h:commandButton>
                                 </h:column>
+
                             </b:dataTable>
+
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" >
+
+                                    <h:panelGroup id="content-modal-eliminar" layout="block" class="modal-content">
+
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Ingrese el mensaje.</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>motivo: #{controladorEditarReclamacion.reclamacionSeleccionada.idReclamacion}</h4>
+                                            <p></p>
+                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <h:commandButton class="btn btn-primary" pt:data-dismiss="modal" value="guardar cambios">
+                                                <f:ajax event="click" listener="#{controladorEditarReclamacion.editar()}" render="@form"></f:ajax>
+                                            </h:commandButton>
+                                        </div>
+                                    </h:panelGroup>
+
+                                </div>
+                            </div>
+
+
                         </h:form>
 
                     </div>

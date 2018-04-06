@@ -3,18 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladores.usuarios;
+package com.controladores.translados;
 
-import com.modelo.dao.RolFacadeLocal;
-import com.modelo.dao.UsuarioFacadeLocal;
-import com.modelo.entidades.Rol;
-import com.modelo.entidades.Usuario;
+import com.controladores.login.ControladorLogin;
+import com.modelo.dao.AfiliacionFacadeLocal;
+import com.modelo.dao.EstadoProcesoFacadeLocal;
+import com.modelo.dao.TrasladoFacadeLocal;
+import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.EstadoProceso;
+import com.modelo.entidades.Traslado;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.inject.Inject;
 
@@ -22,71 +25,63 @@ import javax.inject.Inject;
  *
  * @author David
  */
-@Named(value = "controladorEditarUsuarios")
-@ConversationScoped
-public class ControladorEditarUsuarios implements Serializable {
+@Named(value = "controladorEditarTranslado")
+@ViewScoped
+public class ControladorEditarTranslado implements Serializable {
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacadeLocal;
+    private TrasladoFacadeLocal trasladoFacadeLocal;
     @EJB
-    private RolFacadeLocal rolFacadeLocal;
+    private EstadoProcesoFacadeLocal estadoProcesoFacadeLocal;
+    @EJB
+    private AfiliacionFacadeLocal afiliacionFacadeLocal;
     @Inject
-    private Conversation conversation;
-    private List<Rol> listaRoles;
-    private Usuario usuarioSeleccionado;
+    private ControladorLogin controladorLogin;
+    private List<EstadoProceso> listaEstadoProcesos;
+    private Traslado trasladoSeleccionado;
 
-    public ControladorEditarUsuarios() {
+    public ControladorEditarTranslado() {
     }
 
     @PostConstruct
     public void init() {
-        listaRoles = rolFacadeLocal.findAll();
+        listaEstadoProcesos = estadoProcesoFacadeLocal.findAll();
 
     }
 
-    public List<Rol> getListaRoles() {
-        return listaRoles;
+    public List<EstadoProceso> getListaEstadoProcesos() {
+        return listaEstadoProcesos;
     }
 
-    public Usuario getUsuarioSeleccionado() {
-        return usuarioSeleccionado;
+    public Traslado getTrasladoSeleccionado() {
+        return trasladoSeleccionado;
     }
 
-    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
-        this.usuarioSeleccionado = usuarioSeleccionado;
-    }
-
-    public void iniciarConversacion() {
-        if (conversation.isTransient()) {
-            conversation.begin();
-        }
-
-    }
-
-    public void terminarConversacion() {
-        if (!conversation.isTransient()) {
-            conversation.end();
-        }
-
+    public void setTrasladoSeleccionado(Traslado trasladoSeleccionado) {
+        this.trasladoSeleccionado = trasladoSeleccionado;
     }
     
-    public String cancelar(){
-        terminarConversacion();
-        return "/app/usuarios/listarUsuarios.xhtml?faces-redirect=true";
-        
-    }
     
-    public String prepararEditar(Usuario u){
-        iniciarConversacion();
-        usuarioSeleccionado = u;
-        return "/app/usuarios/editarUsuario.xhtml?faces-redirect=true";
+    public void prepararEditar(Traslado t){
+        trasladoSeleccionado = t;
+        System.out.println(trasladoSeleccionado.getIdTraslado());
     
     }
 
-    public String editar() {
-        usuarioFacadeLocal.edit(usuarioSeleccionado);
-        return cancelar();
+    public void editar() {
+        trasladoSeleccionado.setFechaSolucion(new Date());
+        trasladoSeleccionado.setEstadoprocesosIdEstado(new EstadoProceso(2));
+        trasladoSeleccionado.setUsuarioIdAnalista(controladorLogin.getUsuarioSesion());
+        trasladoFacadeLocal.edit(trasladoSeleccionado);
+        editarAfiliado();
 
+    }
+    
+    public void editarAfiliado(){
+        Afiliacion a = afiliacionFacadeLocal.find(trasladoSeleccionado.getAfiliacionIdAfiliacion().getIdAfiliacion());
+        a.setMunicipioIdMunicipio(trasladoSeleccionado.getMunicipioIdMunicipio());
+        afiliacionFacadeLocal.edit(a);
+    
     }
 
 }

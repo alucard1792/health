@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladores.usuarios;
+package com.controladores.reclamacion;
 
+import com.controladores.login.ControladorLogin;
+import com.modelo.dao.ReclamacionFacadeLocal;
 import com.modelo.dao.UsuarioFacadeLocal;
+import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Reclamacion;
 import com.modelo.entidades.Usuario;
 import java.io.Serializable;
 import java.util.List;
@@ -13,30 +17,42 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author David
  */
-@Named(value = "controladorListarUsuarios")
+@Named(value = "controladorListarReclamacion")
 @ViewScoped
-public class ControladorListarUsuarios implements Serializable{
+public class ControladorListarReclamacion implements Serializable {
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacadeLocal;
-    private List<Usuario> listaUsuario;
-            
-    public ControladorListarUsuarios() {
-    }
-    
-    @PostConstruct
-    public void init(){
-        listaUsuario = usuarioFacadeLocal.findAll();
-    
+    private ReclamacionFacadeLocal reclamacionFacadeLocal;
+    @Inject
+    private ControladorLogin controladorLogin;
+    private List<Reclamacion> listaReclamaciones;
+
+    public ControladorListarReclamacion() {
     }
 
-    public List<Usuario> getListaUsuario() {
-        return listaUsuario;
+    @PostConstruct
+    public void init() {
+        if (controladorLogin.getUsuarioSesion().getRolIdRol().getIdRol() != 7) {
+            listaReclamaciones = reclamacionFacadeLocal.findAll();
+            
+        } else {
+            for (Afiliacion a : controladorLogin.getUsuarioSesion().getListaUsuarioAsignado()) {
+                listaReclamaciones = reclamacionFacadeLocal.listaReclamacionPorRol(a);
+
+            }
+
+        }
+
     }
-    
+
+    public List<Reclamacion> getListaReclamaciones() {
+        return listaReclamaciones;
+    }
+
 }

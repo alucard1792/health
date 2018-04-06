@@ -76,9 +76,9 @@ public class Usuario implements Serializable {
     @Column(name = "clave")
     private String clave;
     @OneToMany(mappedBy = "usuarioIdAsignado", fetch = FetchType.EAGER)
-    private List<Afiliacion> afiliacionList;
+    private List<Afiliacion> listaUsuarioAsignado;
     @OneToMany(mappedBy = "usuarioIdAnalista", fetch = FetchType.EAGER)
-    private List<Afiliacion> afiliacionList1;
+    private List<Afiliacion> listaUsuarioAnalista;
     @OneToMany(mappedBy = "usuarioIdanalista", fetch = FetchType.EAGER)
     private List<Reclamacion> reclamacionList;
     @JoinColumn(name = "rol_Id_Rol", referencedColumnName = "Id_Rol")
@@ -183,21 +183,21 @@ public class Usuario implements Serializable {
     }
 
     @XmlTransient
-    public List<Afiliacion> getAfiliacionList() {
-        return afiliacionList;
+    public List<Afiliacion> getListaUsuarioAsignado() {
+        return listaUsuarioAsignado;
     }
 
-    public void setAfiliacionList(List<Afiliacion> afiliacionList) {
-        this.afiliacionList = afiliacionList;
+    public void setListaUsuarioAsignado(List<Afiliacion> listaUsuarioAsignado) {
+        this.listaUsuarioAsignado = listaUsuarioAsignado;
     }
 
     @XmlTransient
-    public List<Afiliacion> getAfiliacionList1() {
-        return afiliacionList1;
+    public List<Afiliacion> getListaUsuarioAnalista() {
+        return listaUsuarioAnalista;
     }
 
-    public void setAfiliacionList1(List<Afiliacion> afiliacionList1) {
-        this.afiliacionList1 = afiliacionList1;
+    public void setListaUsuarioAnalista(List<Afiliacion> listaUsuarioAnalista) {
+        this.listaUsuarioAnalista = listaUsuarioAnalista;
     }
 
     @XmlTransient

@@ -30,83 +30,71 @@
                     </div>
                     <div class="x_content">
 
-
                         <h:form>
                             <b:messages showDetail="true" showSummary="true"></b:messages>
-                            <b:dataTable value="#{controladorListarUsuarios.listaUsuario}" var="item">
+
+                            <b:dataTable value="#{controladorListarAfiliacion.listaAfiliados}" var="item">
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="IdUsuario"/>
+                                        <h:outputText value="IdAfiliacion"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.idUsuario}"/>
+                                    <h:outputText value="#{item.idAfiliacion}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Documento"/>
+                                        <h:outputText value="Codigo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.documento}"/>
+                                    <h:outputText value="#{item.codigo}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Nombres"/>
+                                        <h:outputText value="Fecha"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.nombres}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Apellidos"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.apellidos}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="FechaNacimiento"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.fechaNacimiento}">
+                                    <h:outputText value="#{item.fecha}">
                                         <f:convertDateTime pattern="MM/dd/yyyy" />
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Direccion"/>
+                                        <h:outputText value="MunicipioIdMunicipio"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.direccion}"/>
+                                    <h:outputText value="#{item.municipioIdMunicipio}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Telefono"/>
+                                        <h:outputText value="TipoafiliacionIdCodigo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.telefono}"/>
+                                    <h:outputText value="#{item.tipoafiliacionIdCodigo}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="UsuarioIdAnalista"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.usuarioIdAnalista.nombres} #{item.usuarioIdAnalista.apellidos}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="UsuarioIdAsignado"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.usuarioIdAsignado.nombres} #{item.usuarioIdAsignado.apellidos}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Documento"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.usuarioIdAsignado.documento}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Estado"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.estado}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Email"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.email}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Clave"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.clave}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="RolIdRol"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.rolIdRol.nombre}"/>
+                                    <h:outputText value="#{(item.usuarioIdAsignado.estado == 1 ? 'activo':'inactivo')}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" action="#{controladorEditarUsuarios.prepararEditar(item)}"></h:commandButton>
+                                    <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}"></h:commandButton>
                                 </h:column>
                             </b:dataTable>
                         </h:form>

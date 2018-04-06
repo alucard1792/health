@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladores.usuarios;
+package com.controladores.afiliacion;
 
-import com.modelo.dao.RolFacadeLocal;
+import com.modelo.dao.AfiliacionFacadeLocal;
+import com.modelo.dao.MunicipioFacadeLocal;
+import com.modelo.dao.TipoAfiliacionFacadeLocal;
 import com.modelo.dao.UsuarioFacadeLocal;
-import com.modelo.entidades.Rol;
-import com.modelo.entidades.Usuario;
+import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Municipio;
+import com.modelo.entidades.TipoAfiliacion;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -22,39 +25,58 @@ import javax.inject.Inject;
  *
  * @author David
  */
-@Named(value = "controladorEditarUsuarios")
+@Named(value = "controladorEditarAfiliado")
 @ConversationScoped
-public class ControladorEditarUsuarios implements Serializable {
+public class ControladorEditarAfiliado implements Serializable {
 
+    @EJB
+    private AfiliacionFacadeLocal afiliacionFacadeLocal;
     @EJB
     private UsuarioFacadeLocal usuarioFacadeLocal;
     @EJB
-    private RolFacadeLocal rolFacadeLocal;
+    private TipoAfiliacionFacadeLocal tipoAfiliacionFacadeLocal;
+    @EJB
+    private MunicipioFacadeLocal municipioFacadeLocal;
     @Inject
     private Conversation conversation;
-    private List<Rol> listaRoles;
-    private Usuario usuarioSeleccionado;
+    private List<TipoAfiliacion> listaTipoAfiliacion;
+    private List<Municipio> listaMunicipios;
+    private Afiliacion afiliacionSeleccionada;
 
-    public ControladorEditarUsuarios() {
+    public ControladorEditarAfiliado() {
     }
 
     @PostConstruct
     public void init() {
-        listaRoles = rolFacadeLocal.findAll();
+        listaMunicipios = municipioFacadeLocal.findAll();
+        listaTipoAfiliacion = tipoAfiliacionFacadeLocal.findAll();
 
     }
 
-    public List<Rol> getListaRoles() {
-        return listaRoles;
+    public List<TipoAfiliacion> getListaTipoAfiliacion() {
+        return listaTipoAfiliacion;
     }
 
-    public Usuario getUsuarioSeleccionado() {
-        return usuarioSeleccionado;
+    public void setListaTipoAfiliacion(List<TipoAfiliacion> listaTipoAfiliacion) {
+        this.listaTipoAfiliacion = listaTipoAfiliacion;
     }
 
-    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
-        this.usuarioSeleccionado = usuarioSeleccionado;
+    public List<Municipio> getListaMunicipios() {
+        return listaMunicipios;
     }
+
+    public void setListaMunicipios(List<Municipio> listaMunicipios) {
+        this.listaMunicipios = listaMunicipios;
+    }
+
+    public Afiliacion getAfiliacionSeleccionada() {
+        return afiliacionSeleccionada;
+    }
+
+    public void setAfiliacionSeleccionada(Afiliacion afiliacionSeleccionada) {
+        this.afiliacionSeleccionada = afiliacionSeleccionada;
+    }
+
 
     public void iniciarConversacion() {
         if (conversation.isTransient()) {
@@ -69,22 +91,23 @@ public class ControladorEditarUsuarios implements Serializable {
         }
 
     }
-    
-    public String cancelar(){
+
+    public String cancelar() {
         terminarConversacion();
-        return "/app/usuarios/listarUsuarios.xhtml?faces-redirect=true";
-        
+        return "/app/afiliado/listarAfiliados.xhtml?faces-redirect=true";
+
     }
-    
-    public String prepararEditar(Usuario u){
+
+    public String prepararEditar(Afiliacion a) {
         iniciarConversacion();
-        usuarioSeleccionado = u;
-        return "/app/usuarios/editarUsuario.xhtml?faces-redirect=true";
-    
+        afiliacionSeleccionada = a;
+        return "/app/afiliado/editarAfiliado.xhtml?faces-redirect=true";
+
     }
 
     public String editar() {
-        usuarioFacadeLocal.edit(usuarioSeleccionado);
+        usuarioFacadeLocal.edit(afiliacionSeleccionada.getUsuarioIdAsignado());
+        afiliacionFacadeLocal.edit(afiliacionSeleccionada);
         return cancelar();
 
     }

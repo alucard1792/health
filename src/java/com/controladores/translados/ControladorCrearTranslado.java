@@ -3,64 +3,82 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.controladores.usuarios;
+package com.controladores.translados;
 
-import com.modelo.dao.RolFacadeLocal;
-import com.modelo.dao.UsuarioFacadeLocal;
-import com.modelo.entidades.Rol;
-import com.modelo.entidades.Usuario;
+import com.controladores.login.ControladorLogin;
+import com.modelo.dao.AfiliacionFacadeLocal;
+import com.modelo.dao.MunicipioFacadeLocal;
+import com.modelo.dao.TrasladoFacadeLocal;
+import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.EstadoProceso;
+import com.modelo.entidades.Municipio;
+import com.modelo.entidades.Traslado;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 /**
  *
  * @author David
  */
-@Named(value = "controladorCrearUsuarios")
+@Named(value = "controladorCrearTranslado")
 @ViewScoped
-public class ControladorCrearUsuarios implements Serializable {
+public class ControladorCrearTranslado implements Serializable {
 
     @EJB
-    private UsuarioFacadeLocal usuarioFacadeLocal;
+    private TrasladoFacadeLocal trasladoFacadeLocal;
     @EJB
-    private RolFacadeLocal rolFacadeLocal;
-    private List<Rol> listaRoles;
-    private Usuario usuario;
+    private MunicipioFacadeLocal municipioFacadeLocal;
+    @EJB
+    private AfiliacionFacadeLocal afiliacionFacadeLocal;
+    @Inject
+    private ControladorLogin controladorLogin;
+    private List<Municipio> listaMunicipio;
+    private Traslado traslado;
 
-    public ControladorCrearUsuarios() {
+    public ControladorCrearTranslado() {
     }
 
     @PostConstruct
     public void init() {
-        listaRoles = rolFacadeLocal.findAll();
-        usuario = new Usuario();
+        listaMunicipio = municipioFacadeLocal.findAll();
+        traslado = new Traslado();
 
     }
 
-    public List<Rol> getListaRoles() {
-        return listaRoles;
+    public List<Municipio> getListaMunicipio() {
+        return listaMunicipio;
     }
 
-    public void setListaRoles(List<Rol> listaRoles) {
-        this.listaRoles = listaRoles;
+    public Traslado getTraslado() {
+        return traslado;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public void setTraslado(Traslado traslado) {
+        this.traslado = traslado;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    public String crear() {
+        if (controladorLogin.getUsuarioSesion().getRolIdRol().getIdRol() == 7) {
+            traslado.setFecharegistro(new Date());
+            traslado.setEstadoprocesosIdEstado(new EstadoProceso(1));
+            for (Afiliacion a : controladorLogin.getUsuarioSesion().getListaUsuarioAsignado()) {
+                traslado.setAfiliacionIdAfiliacion(afiliacionFacadeLocal.find(a.getIdAfiliacion()));
+                System.out.println(a.getIdAfiliacion());
 
-    public String crear(){
-        usuarioFacadeLocal.create(usuario);
-        return "/app/usuarios/listarUsuarios.xhtml?faces-redirect=true";
-        
+            }
+            trasladoFacadeLocal.create(traslado);
+            return "/app/translados/listarTranslados.xhtml?faces-redirect=true";
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usted no puede crear un translado ya que no tiene el rol y se salto la seguridad: ", "Rol = " + controladorLogin.getUsuarioSesion().getRolIdRol().getNombre()));
+        return "";
     }
 
 }

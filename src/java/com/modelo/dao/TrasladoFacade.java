@@ -5,10 +5,14 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Afiliacion;
 import com.modelo.entidades.Traslado;
+import com.modelo.entidades.Usuario;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +31,21 @@ public class TrasladoFacade extends AbstractFacade<Traslado> implements Traslado
 
     public TrasladoFacade() {
         super(Traslado.class);
+    }
+
+    @Override
+    public List<Traslado> listaTransladoPorRol(Afiliacion a) {
+        Query q = getEntityManager().createQuery("SELECT t FROM Traslado t WHERE t.afiliacionIdAfiliacion = :afiliacionIdAfiliacion", Afiliacion.class);
+        q.setParameter("afiliacionIdAfiliacion", a);
+        return q.getResultList();
+        
+    }
+
+    @Override
+    public List<Traslado> listaTransladoPorRol(Usuario u) {
+        Query q = getEntityManager().createQuery("SELECT t FROM Traslado t WHERE t.usuarioIdAnalista = :usuarioIdAnalista", Afiliacion.class);
+        q.setParameter("usuarioIdAnalista", u);
+        return q.getResultList();
     }
     
 }

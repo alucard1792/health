@@ -5,6 +5,7 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Afiliacion;
 import com.modelo.entidades.Reclamacion;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface ReclamacionFacadeLocal {
     List<Reclamacion> findRange(int[] range);
 
     int count();
+    
+    List<Reclamacion>listaReclamacionPorRol(Afiliacion afiliacion);
     
 }

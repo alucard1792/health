@@ -5,8 +5,8 @@
  */
 package com.modelo.converters;
 
-import com.modelo.dao.RolFacadeLocal;
-import com.modelo.entidades.Rol;
+import com.modelo.dao.MunicipioFacadeLocal;
+import com.modelo.entidades.Municipio;
 import javax.enterprise.inject.spi.CDI;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -17,13 +17,13 @@ import javax.faces.convert.FacesConverter;
  *
  * @author David
  */
-@FacesConverter(forClass = Rol.class)
-public class RolConverter implements Converter{
+@FacesConverter(forClass = Municipio.class)
+public class MunicipioConverter implements Converter{
     
-    private RolFacadeLocal rolFacadeLocal;
+    private MunicipioFacadeLocal municipioFacadeLocal;
     
-    public RolConverter(){
-        rolFacadeLocal = CDI.current().select(RolFacadeLocal.class).get();
+    public MunicipioConverter(){
+        municipioFacadeLocal = CDI.current().select(MunicipioFacadeLocal.class).get();
     }
     
     @Override
@@ -31,7 +31,7 @@ public class RolConverter implements Converter{
         if (value != null && !value.equals("")) {
             try {
 
-                return rolFacadeLocal.find(Integer.valueOf(value));
+                return municipioFacadeLocal.find(Integer.valueOf(value));
             } catch (NumberFormatException numberFormatException) {
                 numberFormatException.printStackTrace();
             }
@@ -42,8 +42,8 @@ public class RolConverter implements Converter{
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if (value != null && value instanceof Rol) {
-            return ((Rol) value).getIdRol().toString();
+        if (value != null && value instanceof Municipio) {
+            return ((Municipio) value).getIdMunicipio().toString();
         }
         return "";
 
