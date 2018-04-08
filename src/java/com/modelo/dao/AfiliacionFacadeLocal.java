@@ -6,6 +6,7 @@
 package com.modelo.dao;
 
 import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -29,5 +30,7 @@ public interface AfiliacionFacadeLocal {
     List<Afiliacion> findRange(int[] range);
 
     int count();
+    
+    Usuario findFetch(Object id);
     
 }

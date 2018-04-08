@@ -91,12 +91,12 @@
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" >
+                                    <h:commandButton pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" value="Resolver" rendered="#{item.fechaSolucion == null}">
                                         <f:ajax event="click" listener="#{controladorEditarTranslado.prepararEditar(item)}" render="content-modal-eliminar"></f:ajax>
                                     </h:commandButton>
                                 </h:column>
                             </b:dataTable>
-                            
+
                             <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" >
 
@@ -109,14 +109,24 @@
                                         </div>
                                         <div class="modal-body">
                                             <h4>motivo: #{controladorEditarTranslado.trasladoSeleccionado.motivo}</h4>
-                                            <p></p>
-                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivo">motivo <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputTextarea id="motivo" value="#{controladorEditarTranslado.message}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputTextarea>
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                            <h:commandButton class="btn btn-primary" pt:data-dismiss="modal" value="ajax">
-                                                <f:ajax event="click" listener="#{controladorEditarTranslado.editar()}" render="table"></f:ajax>
+                                            <h:commandButton class="btn btn-primary" pt:data-dismiss="modal" value="Enviar solicitud cliente">
+                                                <f:ajax execute="motivo" event="click" listener="#{controladorEditarTranslado.editar()}" render="table"></f:ajax>
                                             </h:commandButton>
                                         </div>
                                     </h:panelGroup>

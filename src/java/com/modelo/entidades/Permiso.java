@@ -62,7 +62,7 @@ public class Permiso implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Rol> rolList;
     @OneToMany(mappedBy = "permisoPadre", fetch = FetchType.EAGER)
-    private List<Permiso> permisoList;
+    private List<Permiso> subPermiso;
     @JoinColumn(name = "Permiso_Padre", referencedColumnName = "Id_Permiso")
     @ManyToOne(fetch = FetchType.EAGER)
     private Permiso permisoPadre;
@@ -124,12 +124,12 @@ public class Permiso implements Serializable {
     }
 
     @XmlTransient
-    public List<Permiso> getPermisoList() {
-        return permisoList;
+    public List<Permiso> getSubPermiso() {
+        return subPermiso;
     }
 
-    public void setPermisoList(List<Permiso> permisoList) {
-        this.permisoList = permisoList;
+    public void setSubPermiso(List<Permiso> subPermiso) {
+        this.subPermiso = subPermiso;
     }
 
     public Permiso getPermisoPadre() {
