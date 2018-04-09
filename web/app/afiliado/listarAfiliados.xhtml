@@ -16,90 +16,91 @@
     </ui:define>
 
     <ui:define name="contenido">
+        <h:panelGroup rendered="#{controladorLogin.usuarioSesion.rolIdRol.idRol == 5 || controladorLogin.usuarioSesion.rolIdRol.idRol == 6}">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2> Listar usuarios <small></small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2> Listar usuarios <small></small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
+                            <h:form>
+                                <b:messages showDetail="true" showSummary="true"></b:messages>
 
-                        <h:form>
-                            <b:messages showDetail="true" showSummary="true"></b:messages>
+                                <b:dataTable value="#{controladorListarAfiliacion.listaAfiliados}" var="item">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="IdAfiliacion"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idAfiliacion}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Fecha"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.fecha}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="MunicipioIdMunicipio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.municipioIdMunicipio.nombre}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="TipoafiliacionIdCodigo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.tipoafiliacionIdCodigo.regimen}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Analista que lo registro"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.usuarioIdAnalista.nombres} #{item.usuarioIdAnalista.apellidos}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="nombre usuario"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.usuarioIdAsignado.nombres} #{item.usuarioIdAsignado.apellidos}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Documento"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.usuarioIdAsignado.documento}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Estado"/>
+                                        </f:facet>
+                                        <h:outputText value="#{(item.usuarioIdAsignado.estado == 1 ? 'activo':'inactivo')}"/>
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="opciones"/>
+                                        </f:facet>
+                                        <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}" rendered="#{item.usuarioIdAnalista eq controladorLogin.usuarioSesion}"></h:commandButton>
+                                        <h:commandButton value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
+                                            <f:ajax execute="btnCambiar" render="@form"></f:ajax>
+                                        </h:commandButton>
+                                    </h:column>
+                                </b:dataTable>
+                            </h:form>
 
-                            <b:dataTable value="#{controladorListarAfiliacion.listaAfiliados}" var="item">
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="IdAfiliacion"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.idAfiliacion}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Fecha"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.fecha}">
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                                    </h:outputText>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="MunicipioIdMunicipio"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.municipioIdMunicipio.nombre}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="TipoafiliacionIdCodigo"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.tipoafiliacionIdCodigo.regimen}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Analista que lo registro"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.usuarioIdAnalista.nombres} #{item.usuarioIdAnalista.apellidos}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="nombre usuario"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.usuarioIdAsignado.nombres} #{item.usuarioIdAsignado.apellidos}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Documento"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.usuarioIdAsignado.documento}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="Estado"/>
-                                    </f:facet>
-                                    <h:outputText value="#{(item.usuarioIdAsignado.estado == 1 ? 'activo':'inactivo')}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText value="opciones"/>
-                                    </f:facet>
-                                    <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}" rendered="#{item.usuarioIdAnalista eq controladorLogin.usuarioSesion}"></h:commandButton>
-                                    <h:commandButton value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
-                                        <f:ajax execute="btnCambiar" render="@form"></f:ajax>
-                                    </h:commandButton>
-                                </h:column>
-                            </b:dataTable>
-                        </h:form>
-
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </h:panelGroup>
     </ui:define>
 
     <ui:define name="modals">

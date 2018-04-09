@@ -17,134 +17,135 @@
     </ui:define>
 
     <ui:define name="contenido">
+        <h:panelGroup rendered="#{controladorLogin.usuarioSesion.rolIdRol.idRol == 6}">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2> cambiar <small>este texto</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2> cambiar <small>este texto</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
 
+                            <h:form class="form-horizontal form-label-left">
 
-                        <h:form class="form-horizontal form-label-left">
+                                <b:messages show-detail="true" show-summary="true"></b:messages>
 
-                            <b:messages show-detail="true" show-summary="true"></b:messages>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Documento">Documento <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Documento" value="#{controladorCrearAfiliacion.usuario.documento}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Documento">Documento <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="Documento" value="#{controladorCrearAfiliacion.usuario.documento}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nombre">Nombre <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Nombre" value="#{controladorCrearAfiliacion.usuario.nombres}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Nombre">Nombre <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="Nombre" value="#{controladorCrearAfiliacion.usuario.nombres}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Apellido">Apellido <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="Apellido" value="#{controladorCrearAfiliacion.usuario.apellidos}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Apellido">Apellido <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="Apellido" value="#{controladorCrearAfiliacion.usuario.apellidos}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">direccion <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="direccion" value="#{controladorCrearAfiliacion.usuario.direccion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="direccion">direccion <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="direccion" value="#{controladorCrearAfiliacion.usuario.direccion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">telefono <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="telefono" value="#{controladorCrearAfiliacion.usuario.telefono}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telefono">telefono <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="telefono" value="#{controladorCrearAfiliacion.usuario.telefono}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">email <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="email" value="#{controladorCrearAfiliacion.usuario.email}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">email <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="email" value="#{controladorCrearAfiliacion.usuario.email}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">clave <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="clave" value="#{controladorCrearAfiliacion.usuario.clave}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="clave">clave <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="clave" value="#{controladorCrearAfiliacion.usuario.clave}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="estado" value="#{controladorCrearAfiliacion.usuario.estado}" class="select2_single form-control">
-                                        <f:selectItem itemValue="0" itemLabel="inactivo"></f:selectItem>
-                                        <f:selectItem itemValue="1" itemLabel="Activo"></f:selectItem>
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Municipios">Municipios <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="Municipios" value="#{controladorCrearAfiliacion.afiliacion.municipioIdMunicipio}" class="select2_single form-control">
-                                        <f:selectItems value="#{controladorCrearAfiliacion.listaMunicipios}" var="listaMunicipios" itemLabel="#{listaMunicipios.nombre}"></f:selectItems>
-                                    </h:selectOneMenu>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="estado">estado <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:selectOneMenu id="estado" value="#{controladorCrearAfiliacion.usuario.estado}" class="select2_single form-control">
+                                            <f:selectItem itemValue="0" itemLabel="inactivo"></f:selectItem>
+                                            <f:selectItem itemValue="1" itemLabel="Activo"></f:selectItem>
+                                        </h:selectOneMenu>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="listaTipoAfiliacion">Tipo afiliacion <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="listaTipoAfiliacion" value="#{controladorCrearAfiliacion.afiliacion.tipoafiliacionIdCodigo}" class="select2_single form-control">
-                                        <f:selectItems value="#{controladorCrearAfiliacion.listaTipoAfiliacion}" var="listaTipoAfiliacion" itemLabel="#{listaTipoAfiliacion.regimen}"></f:selectItems>
-                                    </h:selectOneMenu>
-                                </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNacimiento"> Fecha de nacimiento<span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" value="#{controladorCrearAfiliacion.usuario.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Municipios">Municipios <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:selectOneMenu id="Municipios" value="#{controladorCrearAfiliacion.afiliacion.municipioIdMunicipio}" class="select2_single form-control">
+                                            <f:selectItems value="#{controladorCrearAfiliacion.listaMunicipios}" var="listaMunicipios" itemLabel="#{listaMunicipios.nombre}"></f:selectItems>
+                                        </h:selectOneMenu>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <a class="btn btn-primary" type="button" href="listarAfiliados.xhtml">cancelar</a>
-                                    <h:commandButton class="btn btn-success" value="crear" action="#{controladorCrearAfiliacion.crear()}"></h:commandButton>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="listaTipoAfiliacion">Tipo afiliacion <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:selectOneMenu id="listaTipoAfiliacion" value="#{controladorCrearAfiliacion.afiliacion.tipoafiliacionIdCodigo}" class="select2_single form-control">
+                                            <f:selectItems value="#{controladorCrearAfiliacion.listaTipoAfiliacion}" var="listaTipoAfiliacion" itemLabel="#{listaTipoAfiliacion.regimen}"></f:selectItems>
+                                        </h:selectOneMenu>
+                                    </div>
                                 </div>
-                            </div>
-                        </h:form>
 
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fechaNacimiento"> Fecha de nacimiento<span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <b:dateTimePicker id="fechaNacimiento" mode="toggle-icon" value="#{controladorCrearAfiliacion.usuario.fechaNacimiento}" required="true" format="YYYY/MM/DD"/>
+                                    </div>
+                                </div>
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <a class="btn btn-primary" type="button" href="listarAfiliados.xhtml">cancelar</a>
+                                        <h:commandButton class="btn btn-success" value="crear" action="#{controladorCrearAfiliacion.crear()}"></h:commandButton>
+                                    </div>
+                                </div>
+                            </h:form>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </h:panelGroup>
     </ui:define>
 
     <ui:define name="modals">

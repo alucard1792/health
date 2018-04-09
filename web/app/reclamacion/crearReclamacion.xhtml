@@ -16,67 +16,68 @@
     </ui:define>
 
     <ui:define name="contenido">
+        <h:panelGroup rendered="#{controladorLogin.usuarioSesion.rolIdRol.idRol == 7}">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2> cambiar <small>este texto</small></h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2> cambiar <small>este texto</small></h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
+                            <h:form class="form-horizontal form-label-left">
 
-                        <h:form class="form-horizontal form-label-left">
+                                <b:messages show-detail="true" show-summary="true"></b:messages>
 
-                            <b:messages show-detail="true" show-summary="true"></b:messages>
-
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivo">motivo <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="motivo" value="#{controladorCrearReclamacion.reclamacion.motivo}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivo">motivo <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="motivo" value="#{controladorCrearReclamacion.reclamacion.motivo}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText id="descripcion" value="#{controladorCrearReclamacion.reclamacion.descripcion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descripcion">descripcion <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:inputText id="descripcion" value="#{controladorCrearReclamacion.reclamacion.descripcion}"  class="form-control col-md-7 col-xs-12" pt:required=""></h:inputText>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoReclamacion">tipo reclamacion <span class="required">*</span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu id="tipoReclamacion" value="#{controladorCrearReclamacion.reclamacion.tipoReclamacion}" class="select2_single form-control">
-                                        <f:selectItem itemValue="desacatos" itemLabel="desacatos"></f:selectItem>
-                                        <f:selectItem itemValue="tutelas" itemLabel="tutelas"></f:selectItem>
-                                        <f:selectItem itemValue="Derecho de peticion " itemLabel="Derecho de peticion "></f:selectItem>
-                                        <f:selectItem itemValue="Solicitud " itemLabel="Solicitud"></f:selectItem>
-                                    </h:selectOneMenu>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="tipoReclamacion">tipo reclamacion <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <h:selectOneMenu id="tipoReclamacion" value="#{controladorCrearReclamacion.reclamacion.tipoReclamacion}" class="select2_single form-control">
+                                            <f:selectItem itemValue="desacatos" itemLabel="desacatos"></f:selectItem>
+                                            <f:selectItem itemValue="tutelas" itemLabel="tutelas"></f:selectItem>
+                                            <f:selectItem itemValue="Derecho de peticion " itemLabel="Derecho de peticion "></f:selectItem>
+                                            <f:selectItem itemValue="Solicitud " itemLabel="Solicitud"></f:selectItem>
+                                        </h:selectOneMenu>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="ln_solid"></div>
-                            <div class="form-group">
-                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <h:commandButton class="btn btn-success" value="crear" action="#{controladorCrearReclamacion.crear()}"></h:commandButton>
-                                    <a class="btn btn-dark" type="button" href="listarReclamacion.xhtml">cancelar</a>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <h:commandButton class="btn btn-success" value="crear" action="#{controladorCrearReclamacion.crear()}"></h:commandButton>
+                                        <a class="btn btn-dark" type="button" href="listarReclamacion.xhtml">cancelar</a>
+                                    </div>
                                 </div>
-                            </div>
 
-                        </h:form>
+                            </h:form>
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </h:panelGroup>
     </ui:define>
 
     <ui:define name="modals">
