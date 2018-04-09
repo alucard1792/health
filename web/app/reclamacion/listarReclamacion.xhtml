@@ -96,7 +96,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" >
+                                    <h:commandButton value="editar" pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" rendered="#{item.fechaSolucion == null}">
                                         <f:ajax event="click" listener="#{controladorEditarReclamacion.prepararEditar(item)}" render="content-modal-eliminar"></f:ajax>
                                     </h:commandButton>
                                 </h:column>
@@ -114,21 +114,31 @@
                                             <h4 class="modal-title" id="myModalLabel">Ingrese el mensaje.</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <h4>motivo: #{controladorEditarReclamacion.reclamacionSeleccionada.idReclamacion}</h4>
-                                            <p></p>
-                                            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
+                                            <h4>motivo: #{controladorEditarReclamacion.reclamacionSeleccionada.motivo}</h4>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="motivo">mensaje <span class="required">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputTextarea id="motivo" value="#{controladorEditarReclamacion.message}" class="form-control col-md-7 col-xs-12" pt:required=""></h:inputTextarea>
+                                                </div>
+                                            </div>
+
                                         </div>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            <h:commandButton class="btn btn-primary" pt:data-dismiss="modal" value="guardar cambios">
-                                                <f:ajax event="click" listener="#{controladorEditarReclamacion.editar()}" render="@form"></f:ajax>
+                                            <h:commandButton class="btn btn-primary" pt:data-dismiss="modal" value="Enviar">
+                                                <f:ajax execute="motivo" event="click" listener="#{controladorEditarReclamacion.editar()}" render="table"></f:ajax>
                                             </h:commandButton>
                                         </div>
                                     </h:panelGroup>
 
                                 </div>
                             </div>
-
 
                         </h:form>
 

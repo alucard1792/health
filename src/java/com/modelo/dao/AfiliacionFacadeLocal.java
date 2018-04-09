@@ -33,4 +33,6 @@ public interface AfiliacionFacadeLocal {
     
     Usuario findFetch(Object id);
     
+    Usuario findFetchReclamacion(Object id);
+    
 }

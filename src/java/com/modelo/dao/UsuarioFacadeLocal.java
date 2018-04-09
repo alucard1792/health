@@ -5,6 +5,7 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Afiliacion;
 import com.modelo.entidades.Usuario;
 import java.util.List;
 import javax.ejb.Local;
@@ -34,4 +35,5 @@ public interface UsuarioFacadeLocal {
     
     List<Usuario>listarUsuariosNoAfiliados();
     
+    Afiliacion findFetchReporte(Usuario u);
 }

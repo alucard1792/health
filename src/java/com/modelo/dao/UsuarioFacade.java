@@ -5,6 +5,7 @@
  */
 package com.modelo.dao;
 
+import com.modelo.entidades.Afiliacion;
 import com.modelo.entidades.Rol;
 import com.modelo.entidades.Usuario;
 import java.util.ArrayList;
@@ -55,6 +56,21 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         q.setParameter("rolIdRol1", new Rol(5));
         q.setParameter("rolIdRol2", new Rol(6));
         return q.getResultList();
+
+    }
+
+    @Override
+    public Afiliacion findFetchReporte(Usuario u) {
+        Afiliacion afiliacion = null; 
+        List<Afiliacion> listaAfiliacion = new ArrayList<>();
+        Query q = getEntityManager().createQuery("SELECT a FROM Afiliacion a JOIN FETCH a.usuarioIdAsignado u JOIN FETCH a.municipioIdMunicipio m WHERE a.usuarioIdAsignado = :usuarioIdAsignado", Usuario.class);
+        q.setParameter("usuarioIdAsignado", u);
+        listaAfiliacion = q.getResultList();
+        for (Afiliacion a : listaAfiliacion) {
+            afiliacion = a;
+
+        }
+        return afiliacion;
 
     }
 

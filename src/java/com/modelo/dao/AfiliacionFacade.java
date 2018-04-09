@@ -6,6 +6,7 @@
 package com.modelo.dao;
 
 import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Reclamacion;
 import com.modelo.entidades.Traslado;
 import com.modelo.entidades.Usuario;
 import java.util.ArrayList;
@@ -42,6 +43,21 @@ public class AfiliacionFacade extends AbstractFacade<Afiliacion> implements Afil
         List<Traslado>listaAfiliados = q.getResultList();
         for(Traslado t: listaAfiliados){
             usuario = t.getAfiliacionIdAfiliacion().getUsuarioIdAsignado();
+            System.out.println(usuario.getEmail());
+        
+        }
+        return  usuario;
+        
+    }
+
+    @Override
+    public Usuario findFetchReclamacion(Object id) {
+        Query q = getEntityManager().createQuery("SELECT r FROM Reclamacion r JOIN FETCH r.afiliacionIdAfiliado a JOIN FETCH a.usuarioIdAsignado u WHERE r.idReclamacion  = :idReclamacion", Reclamacion.class);
+        q.setParameter("idReclamacion", id);
+        Usuario usuario = null;
+        List<Reclamacion>listaAfiliados = q.getResultList();
+        for(Reclamacion t: listaAfiliados){
+            usuario = t.getAfiliacionIdAfiliado().getUsuarioIdAsignado();
             System.out.println(usuario.getEmail());
         
         }
