@@ -33,7 +33,7 @@
 
                         <h:form>
                             <b:messages showDetail="true" showSummary="true"></b:messages>
-                            <b:dataTable value="#{controladorListarUsuarios.listaUsuario}" var="item">
+                            <b:dataTable value="#{controladorListarCertificados.listaUsuario}" var="item">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="IdUsuario"/>
@@ -82,7 +82,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="Estado"/>
                                     </f:facet>
-                                    <h:outputText value="#{(item.estado == 1 ? 'Activo':'Inactivo')}"/>
+                                    <h:outputText value="#{item.estado}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
@@ -106,7 +106,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" action="#{controladorEditarUsuarios.prepararEditar(item)}" rendered="#{item.rolIdRol.idRol != 5}"></h:commandButton>
+                                    <h:commandButton value="editar" action="#{controladorEditarUsuarios.prepararEditar(item)}"></h:commandButton>
                                 </h:column>
                             </b:dataTable>
                         </h:form>

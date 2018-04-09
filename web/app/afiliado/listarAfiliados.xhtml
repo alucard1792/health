@@ -42,12 +42,6 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="Codigo"/>
-                                    </f:facet>
-                                    <h:outputText value="#{item.codigo}"/>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">
                                         <h:outputText value="Fecha"/>
                                     </f:facet>
                                     <h:outputText value="#{item.fecha}">
@@ -64,17 +58,17 @@
                                     <f:facet name="header">
                                         <h:outputText value="TipoafiliacionIdCodigo"/>
                                     </f:facet>
-                                    <h:outputText value="#{item.tipoafiliacionIdCodigo}"/>
+                                    <h:outputText value="#{item.tipoafiliacionIdCodigo.regimen}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="UsuarioIdAnalista"/>
+                                        <h:outputText value="Analista que lo registro"/>
                                     </f:facet>
                                     <h:outputText value="#{item.usuarioIdAnalista.nombres} #{item.usuarioIdAnalista.apellidos}"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">
-                                        <h:outputText value="UsuarioIdAsignado"/>
+                                        <h:outputText value="nombre usuario"/>
                                     </f:facet>
                                     <h:outputText value="#{item.usuarioIdAsignado.nombres} #{item.usuarioIdAsignado.apellidos}"/>
                                 </h:column>
@@ -94,8 +88,8 @@
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}"></h:commandButton>
-                                    <h:commandButton  value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
+                                    <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}" rendered="#{item.usuarioIdAnalista eq controladorLogin.usuarioSesion}"></h:commandButton>
+                                    <h:commandButton value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
                                         <f:ajax execute="btnCambiar" render="@form"></f:ajax>
                                     </h:commandButton>
                                 </h:column>

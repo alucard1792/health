@@ -61,7 +61,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
     @Override
     public Afiliacion findFetchReporte(Usuario u) {
-        Afiliacion afiliacion = null; 
+        Afiliacion afiliacion = null;
         List<Afiliacion> listaAfiliacion = new ArrayList<>();
         Query q = getEntityManager().createQuery("SELECT a FROM Afiliacion a JOIN FETCH a.usuarioIdAsignado u JOIN FETCH a.municipioIdMunicipio m WHERE a.usuarioIdAsignado = :usuarioIdAsignado", Usuario.class);
         q.setParameter("usuarioIdAsignado", u);
@@ -71,6 +71,26 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
 
         }
         return afiliacion;
+
+    }
+
+    @Override
+    public List<Afiliacion> listarUsuariosRolAfiliado() {
+        Query q = getEntityManager().createQuery("SELECT a FROM Afiliacion a JOIN FETCH a.usuarioIdAsignado u JOIN FETCH u.rolIdRol r WHERE r.idRol = 7 OR r.idRol = 8", Usuario.class);
+        return (List<Afiliacion>) q.getResultList();
+    }
+
+    @Override
+    public List<Afiliacion> listarUsuariosRegistradoAnalistaEnSesion(Usuario usuario) {
+        System.out.println("entro session bean");
+        Query q = getEntityManager().createQuery("SELECT a FROM Afiliacion a JOIN FETCH a.usuarioIdAsignado u JOIN FETCH a.usuarioIdAsignado.rolIdRol r WHERE (a.usuarioIdAnalista = :usuarioIdAnalista AND r.idRol = 7) OR (a.usuarioIdAnalista = :usuarioIdAnalista AND r.idRol = 8)", Usuario.class);
+        q.setParameter("usuarioIdAnalista", usuario);
+        /*List<Usuario> listaUsuarios = new ArrayList<>();
+        for (Afiliacion a : new ArrayList<Afiliacion>(q.getResultList())) {
+            listaUsuarios.add(a.getUsuarioIdAsignado());
+
+        }*/
+        return (List<Afiliacion>) q.getResultList();
 
     }
 

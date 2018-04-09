@@ -5,6 +5,7 @@
  */
 package com.controladores.afiliacion;
 
+import com.controladores.login.ControladorLogin;
 import com.modelo.dao.AfiliacionFacadeLocal;
 import com.modelo.dao.UsuarioFacadeLocal;
 import com.modelo.entidades.Afiliacion;
@@ -16,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 /**
  *
@@ -29,6 +31,8 @@ public class ControladorListarAfiliacion implements Serializable {
     private AfiliacionFacadeLocal AfiliacionFacadeLocal;
     @EJB
     private UsuarioFacadeLocal usuarioFacadeLocal;
+    @Inject
+    private ControladorLogin controladorLogin;
     private List<Afiliacion> listaAfiliados;
 
     public ControladorListarAfiliacion() {
@@ -36,7 +40,15 @@ public class ControladorListarAfiliacion implements Serializable {
 
     @PostConstruct
     public void init() {
-        listaAfiliados = AfiliacionFacadeLocal.findAll();
+        if (controladorLogin.getUsuarioSesion().getRolIdRol().getIdRol() == 5) {
+            System.out.println("es admin");
+            listaAfiliados = usuarioFacadeLocal.listarUsuariosRolAfiliado();
+
+        } else {
+            System.out.println("es analista");
+            listaAfiliados = usuarioFacadeLocal.listarUsuariosRegistradoAnalistaEnSesion(controladorLogin.getUsuarioSesion());
+
+        }
 
     }
 

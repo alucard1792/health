@@ -33,7 +33,7 @@
 
                         <h:form prependId="false">
                             <b:messages showDetail="true" showSummary="true"></b:messages>
-                            <b:dataTable value="#{controladorListarReclamacion.listaReclamaciones}" var="item">
+                            <b:dataTable value="#{controladorListarReclamacion.listaReclamaciones}" var="item" id="table">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText value="Id"/>
@@ -96,7 +96,7 @@
                                     <f:facet name="header">
                                         <h:outputText value="opciones"/>
                                     </f:facet>
-                                    <h:commandButton value="editar" pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" rendered="#{item.fechaSolucion == null}">
+                                    <h:commandButton value="Resolver" pt:data-toggle="modal" pt:data-target=".bs-example-modal-lg" rendered="#{item.fechaSolucion == null}">
                                         <f:ajax event="click" listener="#{controladorEditarReclamacion.prepararEditar(item)}" render="content-modal-eliminar"></f:ajax>
                                     </h:commandButton>
                                 </h:column>

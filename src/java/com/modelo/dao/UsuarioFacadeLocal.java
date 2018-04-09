@@ -36,4 +36,9 @@ public interface UsuarioFacadeLocal {
     List<Usuario>listarUsuariosNoAfiliados();
     
     Afiliacion findFetchReporte(Usuario u);
+    
+    List<Afiliacion> listarUsuariosRegistradoAnalistaEnSesion(Usuario usuario);
+    
+    List<Afiliacion> listarUsuariosRolAfiliado();
+
 }

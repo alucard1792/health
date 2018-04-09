@@ -20,7 +20,7 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><h:commandLink action="#{reporteUsuarios.exportarPDF()}"><i class="fa fa-sign-out pull-right"></i> Exportar certificado afiliacion</h:commandLink></li>
+                                <h:panelGroup rendered="#{controladorLogin.usuarioSesion.rolIdRol.idRol == 7 || controladorLogin.usuarioSesion.rolIdRol.idRol == 8}"><li><h:commandLink action="#{reporteUsuarios.exportarPDF()}"><i class="fa fa-sign-out pull-right"></i> Exportar certificado afiliacion</h:commandLink></li></h:panelGroup>
                                 <li><h:commandLink actionListener="#{controladorLogin.cerrarSesion()}"><i class="fa fa-sign-out pull-right"></i> cerrar sesion</h:commandLink></li>
                             </ul>
                         </li>
