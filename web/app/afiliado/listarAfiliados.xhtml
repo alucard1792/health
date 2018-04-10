@@ -88,6 +88,7 @@
                                         <f:facet name="header">
                                             <h:outputText value="opciones"/>
                                         </f:facet>
+                                        <h:commandButton value="generar certificado" action="#{reporteUsuarios.exportarPDF(item.usuarioIdAsignado)}"></h:commandButton>
                                         <h:commandButton value="editar" action="#{controladorEditarAfiliado.prepararEditar(item)}" rendered="#{item.usuarioIdAnalista eq controladorLogin.usuarioSesion}"></h:commandButton>
                                         <h:commandButton value="Cambiar estado" id="btnCambiar" action="#{controladorListarAfiliacion.cambiarEstado(item)}">
                                             <f:ajax execute="btnCambiar" render="@form"></f:ajax>

@@ -111,4 +111,47 @@ public class ReporteUsuarios implements Serializable {
 
     }
 
+    public void prepararExportar(Usuario u) throws JRException {
+        Map<String, Object> params = new HashMap<>();
+        Afiliacion a = usuarioFacadeLocal.findFetchReporte(u);
+        String estado = "";
+        if (a.getUsuarioIdAsignado().getEstado() == 1) {
+            estado = "Activo";
+
+        } else {
+            estado = "Inactivo";
+
+        }
+        System.out.println(a.getMunicipioIdMunicipio().getNombre());
+        params.put("documento", a.getUsuarioIdAsignado().getDocumento());
+        params.put("nombre", a.getUsuarioIdAsignado().getNombres());
+        params.put("apellido", a.getUsuarioIdAsignado().getApellidos());
+        params.put("fechaNacimiento", a.getUsuarioIdAsignado().getFechaNacimiento());
+        params.put("direccion", a.getUsuarioIdAsignado().getDireccion());
+        params.put("telefono", a.getUsuarioIdAsignado().getTelefono());
+        params.put("email", a.getUsuarioIdAsignado().getEmail());
+        params.put("estado", estado);
+        params.put("tipoAfiliacion", a.getTipoafiliacionIdCodigo().getRegimen());
+        params.put("municipio", a.getMunicipioIdMunicipio().getNombre());
+        params.put("fechaCreacion", new Date());
+        String reportPath = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/") + "/WEB-INF/report/report1.jasper";
+        jasperPrint = JasperFillManager.fillReport(reportPath, params, new JREmptyDataSource());
+
+    }
+
+    public void exportarPDF(Usuario u) throws JRException, IOException {
+        prepararExportar(u);
+        ServletOutputStream servletOutputStream = null;
+        String contentType = "aplication/PDF";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletResponse httpServletResponse = (HttpServletResponse) externalContext.getResponse();
+        httpServletResponse.setContentType(contentType);
+        httpServletResponse.setHeader("Content-disposition", "attachment; filename=\"ReporteUsuarios.pdf\"");
+        servletOutputStream = httpServletResponse.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
+        facesContext.responseComplete();
+
+    }
+
 }
