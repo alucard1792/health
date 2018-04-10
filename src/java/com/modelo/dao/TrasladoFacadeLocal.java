@@ -6,6 +6,7 @@
 package com.modelo.dao;
 
 import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Municipio;
 import com.modelo.entidades.Traslado;
 import com.modelo.entidades.Usuario;
 import java.util.List;
@@ -35,5 +36,9 @@ public interface TrasladoFacadeLocal {
     List<Traslado>listaTransladoPorRol(Afiliacion a);
 
     List<Traslado>listaTransladoPorRol(Usuario u);
+    
+    List<Traslado>listaUltimosTresMunicipios();
+    
+    long countMunicipios(Municipio municipio);
     
 }

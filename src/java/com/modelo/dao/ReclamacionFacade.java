@@ -40,4 +40,12 @@ public class ReclamacionFacade extends AbstractFacade<Reclamacion> implements Re
 
     }
 
+    @Override
+    public List<Reclamacion> listaReclamacionPorTipo(String tipo) {
+        Query q = getEntityManager().createQuery("SELECT r FROM Reclamacion r WHERE r.tipoReclamacion = :tipoReclamacion", Reclamacion.class);
+        q.setParameter("tipoReclamacion", tipo);
+        return q.getResultList();
+
+    }
+
 }

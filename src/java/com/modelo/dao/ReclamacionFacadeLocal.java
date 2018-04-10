@@ -33,4 +33,6 @@ public interface ReclamacionFacadeLocal {
     
     List<Reclamacion>listaReclamacionPorRol(Afiliacion afiliacion);
     
+    List<Reclamacion> listaReclamacionPorTipo(String tipo);
+    
 }

@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template/main-template.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:b="http://bootsfaces.net/ui">
+    <ui:define name="title">
+        Bienvenido a efisalud
+    </ui:define>
+
+    <ui:define name="description">
+
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Listar de reportes <small></small></h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <b:messages showDetail="true" showSummary="true"></b:messages>
+
+                        <div id="canvas-holder" style="width:40%">
+                            <b:label value="reporte de reclamaciones"></b:label>
+                            <canvas id="myChart1" width="400" height="400"></canvas>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <b:label value="reporte de traslados por municipio"></b:label>
+                            <canvas id="myChart2" width="400" height="400"></canvas>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+    <ui:define name="modals">
+
+        <!-- calendar modal -->
+
+        <!-- /calendar modal -->
+    </ui:define>
+
+    <ui:define name="scripts-page">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" type="text/javascript"></script>
+        <script>
+            var ctx1 = document.getElementById("myChart1");
+            var myChart1 = new Chart(ctx1, {
+                type: 'pie',
+                data: {
+                    labels: ["Desacatos", "Tutelas", "Derecho de peticion", "Solicitudes"],
+                    datasets: [{
+                            label: 'numero de reportes',
+                            data: [#{controladorListarReportes.listaReclamacionDesacatos.size()}, #{controladorListarReportes.listaReclamacionTutelas.size()},
+            #{controladorListarReportes.listaReclamacionDerechoPeticion.size()}, #{controladorListarReportes.listaReclamacionSolicitud.size()}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
+
+
+
+            var ctx2 = document.getElementById("myChart2");
+            var myChart2 = new Chart(ctx2, {
+                type: 'pie',
+                data: {
+                    labels: ["#{controladorListarReportes.listaMunicipios.get(0).getNombre()}", "#{controladorListarReportes.listaMunicipios.get(1).getNombre()}",
+                        "#{controladorListarReportes.listaMunicipios.get(2).getNombre()}"],
+                    datasets: [{
+                            label: 'numero de reportes',
+                            data: [#{controladorListarReportes.municipio1}, #{controladorListarReportes.municipio2},
+            #{controladorListarReportes.municipio3}],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
+
+        </script>
+    </ui:define>
+
+</ui:composition>

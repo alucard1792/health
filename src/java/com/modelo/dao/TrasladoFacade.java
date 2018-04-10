@@ -6,6 +6,7 @@
 package com.modelo.dao;
 
 import com.modelo.entidades.Afiliacion;
+import com.modelo.entidades.Municipio;
 import com.modelo.entidades.Traslado;
 import com.modelo.entidades.Usuario;
 import java.util.List;
@@ -46,6 +47,23 @@ public class TrasladoFacade extends AbstractFacade<Traslado> implements Traslado
         Query q = getEntityManager().createQuery("SELECT t FROM Traslado t WHERE t.usuarioIdAnalista = :usuarioIdAnalista", Afiliacion.class);
         q.setParameter("usuarioIdAnalista", u);
         return q.getResultList();
+    }
+
+    @Override
+    public List<Traslado> listaUltimosTresMunicipios() {
+        Query q = getEntityManager().createQuery("SELECT t FROM Traslado t GROUP BY  t.municipioIdMunicipio ", Traslado.class);
+        return q.setMaxResults(3).getResultList();
+
+    }
+
+    @Override
+    public long countMunicipios(Municipio municipio) {
+        System.out.println("municipio facade: " + municipio.getNombre());
+        Query q = getEntityManager().createQuery("SELECT COUNT(t.idTraslado) FROM Traslado t WHERE t.municipioIdMunicipio = :municipioIdMunicipio", Integer.class);
+        q.setParameter("municipioIdMunicipio", municipio);
+        long temp = (long) q.getSingleResult();
+        return temp;
+        
     }
     
 }
