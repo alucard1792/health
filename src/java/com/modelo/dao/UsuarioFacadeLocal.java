@@ -40,5 +40,7 @@ public interface UsuarioFacadeLocal {
     List<Afiliacion> listarUsuariosRegistradoAnalistaEnSesion(Usuario usuario);
     
     List<Afiliacion> listarUsuariosRolAfiliado();
+    
+    Boolean loadUsuarios(String pathFile);
 
 }

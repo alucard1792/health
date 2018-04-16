@@ -93,5 +93,22 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         return (List<Afiliacion>) q.getResultList();
 
     }
+    @Override
+    public Boolean loadUsuarios(String pathFile) {
+        try {
+            System.out.println("path: " + pathFile);
+            String sql = "LOAD DATA LOCAL INFILE '" + pathFile + "' "
+                    + "INTO TABLE municipio "
+                    + "FIELDS TERMINATED BY ';' "
+                    + "LINES TERMINATED BY '\n' "
+                    + "(Nombre, Codigo_Municipio);";
+            Query nq = getEntityManager().createNativeQuery(sql);
+            nq.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
 }

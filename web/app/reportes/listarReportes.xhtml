@@ -35,12 +35,18 @@
                         <div id="canvas-holder" style="width:40%">
                             <b:label value="reporte de reclamaciones"></b:label>
                             <canvas id="myChart1" width="400" height="400"></canvas>
+                            <button type="button" id="download-pdf1" >
+                                Download PDF
+                            </button>
                             <br></br>
                             <br></br>
                             <br></br>
                             <br></br>
                             <b:label value="reporte de traslados por municipio"></b:label>
                             <canvas id="myChart2" width="400" height="400"></canvas>
+                            <button type="button" id="download-pdf2" >
+                                Download PDF
+                            </button>
                         </div>
 
                     </div>
@@ -61,6 +67,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js" type="text/javascript"></script>
         <script>
             var ctx1 = document.getElementById("myChart1");
+            var backgroundColor = 'white';
+            ctx1.fill = 'rgba(255, 0, 255, 0.5)';
             var myChart1 = new Chart(ctx1, {
                 type: 'pie',
                 data: {
@@ -95,7 +103,7 @@
                 }
             });
 
-
+            ctx1.fillStyle = backgroundColor;
 
             var ctx2 = document.getElementById("myChart2");
             var myChart2 = new Chart(ctx2, {
@@ -131,7 +139,45 @@
                 }
             });
 
+            document.getElementById('download-pdf1').addEventListener("click", downloadPDF1);
+
+            //donwload pdf from original canvas
+            function downloadPDF1() {
+                var canvas = document.querySelector('#myChart1');
+                //creates image
+                var canvasImg = canvas.toDataURL("image/png", 1.0);
+
+                //creates PDF from img
+                var doc = new jsPDF('landscape');
+                doc.setFontSize(20);
+                //doc.text(15, 15, "Cool Chart");
+                doc.addImage(canvasImg, 'JPEG', 10, 10, 180, 150);
+                doc.save('canvas.pdf');
+
+            }
+
+            document.getElementById('download-pdf2').addEventListener("click", downloadPDF2);
+
+            //donwload pdf from original canvas
+            function downloadPDF2() {
+                var canvas = document.querySelector('#myChart2');
+                //creates image
+                var canvasImg = canvas.toDataURL("image/png", 1.0);
+
+                //creates PDF from img
+                var doc = new jsPDF('landscape');
+                doc.setFontSize(20);
+                //doc.text(15, 15, "Cool Chart");
+                doc.addImage(canvasImg, 'JPEG', 10, 10, 180, 150);
+                doc.save('canvas.pdf');
+
+            }
+
+
+
         </script>
+
+        <script src="../../resources/js/jspdf.min.js" type="text/javascript"></script>
     </ui:define>
 
 </ui:composition>
